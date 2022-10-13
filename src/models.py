@@ -33,11 +33,12 @@ class Planets(db.Model):
     empire_ally = db.Column(db.Boolean(), nullable=False)
     
     def __repr__(self):
-        return '<Planets %r>' % self.name
+        return '<Planetas %r>' % self.name
 
     def serialize(self):
         return {
             "id": self.id,
+            "name": self.name,
             "population": self.population,
             "galaxy": self.galaxy,
             "empire_ally": self.empire_ally,
