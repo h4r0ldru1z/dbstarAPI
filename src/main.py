@@ -63,11 +63,27 @@ def get_planets():
 
 @app.route('/planets/<int:planet_id>', methods=['GET'])
 def get_planet(planet_id):
-    planet = Planets.query.get(user_id)
+    planet = Planets.query.get(planet_id)
     result = {
         "msg": f'número de planeta: {planet_id}'
     }
     return jsonify(planet.serialize()), 200 
+
+@app.route('/characters', methods=['GET'])
+def get_characters():
+    characters = Characters.query.filter().all()
+    result = list(map(lambda characters: characters.serialize(), characters))
+
+    return jsonify(result), 200
+
+@app.route('/characters/<int:character_id>', methods=['GET'])
+def get_character(character_id):
+    character = Characters.query.get(character_id)    
+    result = {
+        f'número de usuario: {character_id}'
+    }
+
+    return jsonify(character.serialize()), 200
 
 # this only runs if `$ python src/main.py` is executed
 if __name__ == '__main__':
