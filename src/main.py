@@ -8,7 +8,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from admin import setup_admin
-from models import db, User, Planets, Characters, FavoriteCharacter, FavoritePlanet
+from models import db, User, Planets, Characters, Favorite_Character, Favorite_Planet
 #from models import Person
 
 app = Flask(__name__)
@@ -53,6 +53,13 @@ def get_user(user_id):
     }
 
     return jsonify(user.serialize()), 200
+
+@app.route('/favoriteplanets/<int:planet_id>', methods=['POST'])
+def add_favplan(planet_id):
+    request_body=json.loads(request.data)
+
+
+
 
 @app.route('/planets', methods=['GET'])
 def get_planets():
